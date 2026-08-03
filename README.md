@@ -445,4 +445,4 @@ Railsとの相性が良い |
 「実装のやり方がわからない」「調査に時間がかかる」等思わぬところで時間がかかる可能性がある
 
 ### 11.画面遷移図
-https://www.figma.com/design/vgdwjZRTS8CfaadSVE33HS/Atogatari?node-id=34-677&t=11X6rr69D1Nf4OWk-1
+https://www.figma.com/design/vgdwjZRTS8CfaadSVE33HS/Atogatari?node-id=0-1&t=11X6rr69D1Nf4OWk-1
