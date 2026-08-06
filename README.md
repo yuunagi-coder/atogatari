@@ -446,3 +446,30 @@ Railsとの相性が良い |
 
 ### 11.画面遷移図
 https://www.figma.com/design/vgdwjZRTS8CfaadSVE33HS/Atogatari?node-id=0-1&t=11X6rr69D1Nf4OWk-1
+
+### 12.ER図
+[![Image from Gyazo](https://i.gyazo.com/90af9eee31804110ab5796d1d5ef820a.png)](https://gyazo.com/90af9eee31804110ab5796d1d5ef820a)
+#### Usersテーブル
+- name : string / ユーザー名
+- email : string / メールアドレス（ユニーク制約）
+- password_digest  : string/ パスワード
+- created_at : datetime
+- updated_at : datetime
+
+#### recordsテーブル
+- spot_name : string / 場所名
+- latitude : decimal(10,7) / 緯度
+- longitude : decimal(10,7) / 経度
+- recorded_at : datetime / 記録日時
+- memo : text / メモ
+- created_at : datetime
+- updated_at : datetime
+- user_id
+
+※spotsテーブルの要否について
+Google Maps APIのAutomatic APIの利用を検討しているため、場所名登録時にspotsテーブルを参照する必要性が薄いと考える。
+MVP段階ではrecordsテーブルのみとし、本リリース時に分割することも視野に入れる
+
+※google_place_idのカラムの要否について
+placeIDは閉店や移転等でplace IDの情報が都度更新される可能性がある。このアプリは「あの日、あの場所で何を感じたか」を未来につなげるサービスであるため、その時時点の情報である方が良いと考える。
+そのため、マーカー表示時の情報はplace IDではなく、緯度経度を用いる。
