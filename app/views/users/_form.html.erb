@@ -1,23 +1,33 @@
 <%= form_with model: @user, url: user_path do |form| %>
-  <div class="flex justify-center flex-col items-align">
-    <div>
-      <%= form.label "ユーザー名", class: "block" %>
-      <%= form.text_field :name, class: 'form-control' %>
+  <% if @user.errors.any? %>
+    <div class="text-red">
+      <h2><%= pluralize(user.errors.count, "error") %>件のエラーがあります</h2>
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="flex flex-col mx-auto w-full space-y-4 mt-8 mb-8">
+    <div class="mb-4">
+      <%= form.label "ユーザー名", class: "block required" %>
+      <%= form.text_field :name, class: 'form-control bg-white round mt-2 p-2 w-full' %>
+    </div> 
+    <div class="mb-4">
+      <%= form.label "メールアドレス", class: "block required" %>
+      <%= form.text_field :email_address, class: 'form-control bg-white mt-2 p-2 w-full' %>
+    </div> 
+    <div class="mb-4">
+      <%= form.label "パスワード", class: "block required" %>
+      <%= form.password_field :password, class: 'form-control bg-white mt-2 p-2 w-full' %>
+    </div> 
+    <div class="mb-4">
+      <%= form.label "パスワード確認", class: "block required" %>
+      <%= form.password_field :password_confirmation, class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div>
-      <%= form.label "メールアドレス", class: "block" %>
-      <%= form.text_field :email_address, class: 'form-control' %>
-    </div> 
-    <div>
-      <%= form.label "パスワード", class: "block" %>
-      <%= form.password_field :password, class: 'form-control' %>
-    </div> 
-    <div>
-      <%= form.label "パスワード確認", class: "block" %>
-      <%= form.password_field :password_confirmation, class: 'form-control' %>
-    </div> 
-    <div>
-      <%= form.submit "登録", class: 'btn'%>
+      <%= form.submit "登録", class: 'btn bg-yellow-500 hover:bg-yellow-600 font-bold py-2 px-4 rounded w-full'%>
     </div> 
   </div>
 <% end %>
