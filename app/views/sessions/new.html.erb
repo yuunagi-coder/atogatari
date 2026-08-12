@@ -1,11 +1,21 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<div class="flex flex-col justify-center items-center h-screen w-full">
+  <div class="w-full max-w-md mx-auto">
+    <h1 class="text-3xl mb-4 text-center">あとがたり</h1>
+    <h2 class="text-2xl mb-2 text-center">ログイン</h2>
+    <%= form_with url: session_path do |form| %>
+      <div class="flex flex-col mx-atuo w-full space-y-4 mt-8 mb-8">
+        <div class="mb-4">
+          <%= form.label "メールアドレス", class: "block" %>
+          <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", value: params[:email_address], class: 'form-control bg-white mt-2 p-2 w-full' %>
+        </div>
+        <div class="mb-4">
+          <%= form.label "パスワード", class: "block" %>
+          <%= form.password_field :password, required: true, autocomplete: "current-password", maxlength: 72, class: 'form-control bg-white mt-2 p-2 w-full' %>
+        </div>
+        <%= form.submit "ログイン", class: "btn bg-yellow-500 hover:bg-yello-600 font-bold py-2 px-4 rounded w-full" %>
+      </div>
+    <% end %>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
-
-<%#= link_to "Forgot password?", new_password_path %>
+    <button class="mt-2">新規登録はこちら</button>
+  </div>
+</div>
