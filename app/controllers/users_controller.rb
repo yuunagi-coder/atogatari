@@ -7,17 +7,21 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(sign_up_params)
-    if @user.save
-      start_new_session_for(@user)
-      redirect_to root_path
-    else
-      render :new, status: :unprocessable_entity
+    
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to root_path, notice: "ユーザーの新規登録に成功しました"}
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity}
+      end
     end
   end
 
   private
 
   def sign_up_params
-    params.expect(user: [:name, :email, :password, :password_confirmation])
+    params.expect(user: [:name, :email_address, :password, :password_confirmation])
   end
 end

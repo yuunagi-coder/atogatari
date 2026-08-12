@@ -1,7 +1,7 @@
 <%= form_with model: @user, url: user_path do |form| %>
   <% if @user.errors.any? %>
     <div class="text-red">
-      <h2><%= pluralize(user.errors.count, "error") %>件のエラーがあります</h2>
+      <h2><%= user.errors.count %>件のエラーがあります</h2>
       <ul>
         <% user.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -16,7 +16,7 @@
     </div> 
     <div class="mb-4">
       <%= form.label "メールアドレス", class: "block required" %>
-      <%= form.text_field :email_address, class: 'form-control bg-white mt-2 p-2 w-full' %>
+      <%= form.email_field :email_address, class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
       <%= form.label "パスワード", class: "block required" %>
