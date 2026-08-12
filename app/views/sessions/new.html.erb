@@ -15,7 +15,6 @@
         <%= form.submit "ログイン", class: "btn bg-yellow-500 hover:bg-yello-600 font-bold py-2 px-4 rounded w-full" %>
       </div>
     <% end %>
-
-    <button class="mt-2">新規登録はこちら</button>
+    <%= link_to "新規登録はこちら", new_user_path, class:"py-2 px-4" %>
   </div>
 </div>
