@@ -3,6 +3,6 @@
     <h1 class="text-3xl mb-4 text-center">あとがたり</h1>
     <h2 class="text-2xl mb-2 text-center">新規登録</h2>
     <%= render "form", user: @user %>
-    <button class="mt-2">ログインはこちら</button>
+    <%= link_to "ログインはこちら", new_session_path, class:"py-2 px-4" %>
   </div>
 </div>

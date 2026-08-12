@@ -406,25 +406,25 @@
 |  | Places API | 場所検索 |
 | 写真管理 | Active Stprage | 写真やアップロード管理 |
 | 検索機能 | Ransack |  |
+| 認証機能 | Rails8標準機能 | ログイン・ログアウト機能 |
 
 ### 10-2. 技術選定の比較検討
 
 | カテゴリ | 技術 | 採用／不採用 | 理由 |
 | --- | --- | --- | --- |
 | 開発言語 | Ruby | 採用 | カリキュラムで利用したため学習コストが低い |
-| フレームワーク | Ruby on Rails8 | 採用 | 日本語のドキュメントが多い
-カリキュラムで利用したため学習コストが低い最新の機能を試したい |
+| フレームワーク | Ruby on Rails8 | 採用 | 日本語のドキュメントが多い。カリキュラムで利用したため学習コストが低い最新の機能を試したい |
 | データベース | PostgreSQL | 採用 | インフラで利用するNeonがPostgreSQLに特化している |
-| フロントエンド | Hotwire/JavaScript | 採用 | Hotwireを利用することでJavaScriptを最小限に抑えつつ非同期処理が可能
-Railsとの相性が良い |
+| フロントエンド | Hotwire/JavaScript | 採用 | Hotwireを利用することでJavaScriptを最小限に抑えつつ非同期処理が可能。Railsとの相性が良い |
 | CSS/ UI | Tailwind CSS | 採用 | CSSファイルを簡潔に書くことができる |
 |  | Bootstrap | 不採用 | カスタマイズする際にはデフォルトの設定をオーバーライドする必要があり、やや扱いずらい |
 | インフラ | Render/Neon | 採用 | 無料枠がある |
-| 開発環境 | Docker | 採用 | ローカルを汚さずに開発環境を構築できる。
-チーム開発や本番環境との環境差異を最小限にできる |
+| 開発環境 | Docker | 採用 | ローカルを汚さずに開発環境を構築できる。チーム開発や本番環境との環境差異を最小限にできる |
 | マップ | Maps JavaScript API | 採用 | 広く使われているためドキュメントが多い |
 |  | Places API | 採用 | 広く使われているためドキュメントが多い |
 | 写真 | Active Strage | 採用 | 手軽に実装できる |
+| 認証 | Rails8標準機能 | 採用 | コードを確認できるため、認証の仕組みを学習できる |
+|  | Devise | 不採用 | 技術記事は多いというメリットがあるが、内部構造の理解が難しいため今回は不採用とする |
 - 今回チャレンジしたい点
     
     Google Maps APIを使った地図表示
@@ -447,11 +447,10 @@ Railsとの相性が良い |
 ### 11.画面遷移図
 https://www.figma.com/design/vgdwjZRTS8CfaadSVE33HS/Atogatari?node-id=0-1&t=11X6rr69D1Nf4OWk-1
 
-### 12.ER図
-[![Image from Gyazo](https://i.gyazo.com/90af9eee31804110ab5796d1d5ef820a.png)](https://gyazo.com/90af9eee31804110ab5796d1d5ef820a)
+### 12.ER図[![Image from Gyazo](https://i.gyazo.com/9c8e1219ee5cf848facae92c0ad5dcb8.png)](https://gyazo.com/9c8e1219ee5cf848facae92c0ad5dcb8)
 #### Usersテーブル
 - name : string / ユーザー名
-- email : string / メールアドレス（ユニーク制約）
+- email_address : string / メールアドレス（ユニーク制約）
 - password_digest  : string/ パスワード
 - created_at : datetime
 - updated_at : datetime
