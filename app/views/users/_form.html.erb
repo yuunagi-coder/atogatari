@@ -1,6 +1,6 @@
 <%= form_with model: @user, url: user_path do |form| %>
   <% if @user.errors.any? %>
-    <div class="text-red">
+    <div class="text-red-400">
       <h2><%= user.errors.count %>件のエラーがあります</h2>
       <ul>
         <% user.errors.each do |error| %>
