@@ -1,0 +1,23 @@
+<%= form_with model: @user, url: user_path do |form| %>
+  <div class="flex justify-center flex-col items-align">
+    <div>
+      <%= form.label "ユーザー名", class: "block" %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div> 
+    <div>
+      <%= form.label "メールアドレス", class: "block" %>
+      <%= form.text_field :email_address, class: 'form-control' %>
+    </div> 
+    <div>
+      <%= form.label "パスワード", class: "block" %>
+      <%= form.password_field :password, class: 'form-control' %>
+    </div> 
+    <div>
+      <%= form.label "パスワード確認", class: "block" %>
+      <%= form.password_field :password_confirmation, class: 'form-control' %>
+    </div> 
+    <div>
+      <%= form.submit "登録", class: 'btn'%>
+    </div> 
+  </div>
+<% end %>

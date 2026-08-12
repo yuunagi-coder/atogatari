@@ -11,7 +11,7 @@
         style: "width: 50%; height: 100%; object-fit: contain;"
       %>
     </div>
-    <div class="w-1/2">
+    <div class="flex justify-center items-center w-1/2">
       <p class="text-left text-base m-8">
         場所をきっかけに、あの日の体験を思い出し</br>
         未来のお出かけにつなげる「お出かけログ」です</br>
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="m-4">
-    <button class="m-1">新規登録</button>
+    <%= link_to "新規登録", new_user_path, class:"btn bg-yellow-500 hover:bg-yellow-600 text-slate-950 font-bold py-2 px-4 rounded" %>
     <button class="m-1">ログイン</button>
   </div>  
 </div>
