@@ -11,4 +11,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "tops#top"
+  
+  resource :user, only: %i[new create]
+  resource :session, only: %i[new create destroy]
+  
+  # パスワードを忘れた場合はMVPリリース後に作成
+  # resources :passwords, param: :token
+
 end

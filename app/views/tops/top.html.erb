@@ -1,6 +1,6 @@
-<div class="font-[Zen_Maru_Gothic] text-center justify-center h-screen flex flex-col w-5/6 mx-auto">
+<div class="text-center justify-center h-screen flex flex-col w-5/6 mx-auto">
   <div class="m-8">
-    <h1 class="text-2xl">あとがたり</h1>
+    <h1 class="text-3xl">あとがたり</h1>
     <p class="text-xs">場所と思い出をつなぐお出かけログ</p>
   </div>
 
@@ -11,9 +11,9 @@
         style: "width: 50%; height: 100%; object-fit: contain;"
       %>
     </div>
-    <div class="w-1/2">
+    <div class="flex justify-center items-center w-1/2">
       <p class="text-left text-base m-8">
-        場所をきっかけに、あの日の体験を思い出し
+        場所をきっかけに、あの日の体験を思い出し</br>
         未来のお出かけにつなげる「お出かけログ」です</br>
         </br>
         過去の体験を記録することで</br>
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="m-4">
-    <button class="m-1">新規登録</button>
+    <%= link_to "新規登録", new_user_path, class:"btn bg-yellow-500 hover:bg-yellow-600 font-bold py-2 px-4 rounded" %>
     <button class="m-1">ログイン</button>
   </div>  
 </div>
