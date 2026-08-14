@@ -1,5 +1,7 @@
 class RecordsController < ApplicationController
   def new
+    @record = Record.new
+    @datetime = Time.current
   end
 
   def show
