@@ -1,1 +1,16 @@
-<h1>一覧</h1>
+<div class="">
+  <h1>思い出一覧</h2>
+  <%= render 'shared/flash_message' %>
+  <div id="records">
+  <% if @records.any? %>
+      <% @records.each do |record| %>
+          <%= render partial: 'record', locals: { record: record } %>
+          <div class="">
+              <%= link_to t('records.show.title'), record, class: "" %>
+          </div>
+      <% end %>
+  <% else %>
+      <p>思い出が記録されていないようです</p>
+  <% end %>
+  </div>
+</div>
