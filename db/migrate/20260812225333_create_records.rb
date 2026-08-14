@@ -10,7 +10,7 @@ class CreateRecords < ActiveRecord::Migration[8.1]
 
       t.timestamps
       t.index :spot_name
-      t.index [:latitude, :longitude]
+      t.index [ :latitude, :longitude ]
     end
   end
 end
