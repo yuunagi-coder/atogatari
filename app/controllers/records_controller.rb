@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
-  before_action :set_record, only: [:show, :edit, :destroy, :update]
-  
+  before_action :set_record, only: [ :show, :edit, :destroy, :update ]
+
   def new
     @record = Record.new
     @datetime = Time.current
@@ -37,7 +37,7 @@ class RecordsController < ApplicationController
 
   private
 
-  def set_record 
+  def set_record
     @record = Record.find(params[:id])
   end
 
