@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resource :user, only: %i[new create]
   resource :session, only: %i[new create destroy]
+  resources :records, only: %i[new show index edit create update destroy]
 
   # パスワードを忘れた場合はMVPリリース後に作成
   # resources :passwords, param: :token
