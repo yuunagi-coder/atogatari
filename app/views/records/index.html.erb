@@ -1,11 +1,11 @@
 <div class="flex flex-col justify-center items-center h-screen w-full">
-  <h1 class="text-3xl">思い出一覧</h1>
+  <h1 class="text-3xl">記録一覧</h1>
   <%= render 'shared/flash_message' %>
   <div id="records" class="mx-auto w-4/5 max-w md">
     <% if @records.any? %>
       <% @records.each do |record| %>
         <%= link_to record, class: "block" do %>
-          <%= render partial: 'record', locals: { record: record } %>
+          <%= render partial: 'records', locals: { record: record } %>
         <% end %>
       <% end %>
     <% else %>

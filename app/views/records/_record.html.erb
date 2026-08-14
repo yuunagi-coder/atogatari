@@ -1,13 +1,17 @@
-<div id="<%= dom_id record %>" class="relative flex flex-col m-4 border-b border-slate-900 p-4">
+<div id="<%= dom_id record %>" class="flex flex-col justify-center items-center m-4 p-4 mx-auto">
   <div>
     <p class="text-xl m-1">
       <%= record.spot_name %>
     </p>
   </div>
-    <div class="items-right text-l">
-      <p>
-        <%= record.recorded_at.strftime("%Y年%m月%d日") %>
-      </p>
+  <div class="items-right text-l">
+    <p>
+      <%= record.recorded_at.strftime("%Y年%m月%d日") %>
+    </p>
+  </div>
+  <div class="items-right text-l">
+    <p>
+      <%= record.memo %>
+    </p>
   </div>
 </div>
-
