@@ -14,6 +14,16 @@ class RecordsController < ApplicationController
   end
 
   def create
+    @record = Current.user.records.new(record_params)
+    respond_to do |format|
+      if @record.save
+        format.html { redirect_to root_path, notice: "思い出を記録しました" }
+        format.json { render :show, status: :created, location: @record }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @record.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
@@ -25,6 +35,8 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.expect(:spot_name, :latitude, :longitude, :recorded_at, :memo, :user_id)
+    params.require(:record)
+          .permit(:spot_name, :latitude, :longitude, :recorded_at, :memo)
+          .merge(user_id: Current.user.id)
   end
 end

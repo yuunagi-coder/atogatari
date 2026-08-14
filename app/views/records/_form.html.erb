@@ -1,33 +1,33 @@
-<%= form_with model: @record, url: root_path do |form| %>
+<%= form_with model: @record, url: records_path do |form| %>
   <% if @record.errors.any? %>
     <div class="text-red-400">
-      <h2><%= record.errors.count %>件のエラーがあります</h2>
+      <h2><%= @record.errors.count %>件のエラーがあります</h2>
       <ul>
-        <% record.errors.each do |error| %>
-          <li><%= record.full_message %></li>
+        <% @record.errors.each do |error| %>
+          <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
   <div class="flex flex-col mx-auto w-full space-y-4 mt-8 mb-8">
     <div class="mb-4">
-      <%= form.label "場所名", class: "block required" %>
+      <%= form.label :spot_name, "場所名", class: "block required" %>
       <%= form.text_field :spot_name, class: 'form-control bg-white round mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
-      <%= form.label "緯度", class: "block required" %>
+      <%= form.label :latitude, "緯度", class: "block required" %>
       <%= form.number_field :latitude, step: "0.000001", class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
-      <%= form.label "経度", class: "block required" %>
+      <%= form.label :longitude, "経度", class: "block required" %>
       <%= form.number_field :longitude, step: "0.000001", class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
-      <%= form.label "行った日時", class: "block required" %>
+      <%= form.label :recorded_at, "行った日時", class: "block required" %>
       <%= form.datetime_field :recorded_at, value: @datetime, include_seconds: false, class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
-      <%= form.label "メモ", class: "block" %>
+      <%= form.label :memo, "メモ", class: "block" %>
       <%= form.text_area :memo, class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div>
