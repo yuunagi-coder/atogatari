@@ -1,3 +1,4 @@
 <h1>MAP</h1>
 <%= button_to "ログアウト", session_path, method: :delete, form: { data: { turbo_confirm: 'ログアウトしますか？'}} %>
 <%= link_to "新規作成", new_record_path %>
+<%= link_to "一覧", records_path %>

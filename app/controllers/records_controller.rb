@@ -8,6 +8,7 @@ class RecordsController < ApplicationController
   end
 
   def index
+    @records = Current.user.records.all.order(created_at: :desc)
   end
 
   def edit

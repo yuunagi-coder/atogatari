@@ -1,1 +1,16 @@
-<h1>一覧</h1>
+<div class="flex flex-col justify-center items-center h-screen w-full">
+  <h1 class="text-3xl">思い出一覧</h1>
+  <%= render 'shared/flash_message' %>
+  <div id="records" class="mx-auto w-4/5 max-w md">
+    <% if @records.any? %>
+      <% @records.each do |record| %>
+        <%= link_to record, class: "block" do %>
+          <%= render partial: 'record', locals: { record: record } %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p class="text-xl text-center m-10">思い出が記録されていないようです</p>
+    <% end %>
+    <%= link_to "戻る", 'javascript:history.back()', class: "py-2 px-4 items-left" %>
+  </div>
+</div>
