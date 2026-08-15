@@ -14,13 +14,14 @@ class RecordsController < ApplicationController
   end
 
   def edit
+    @datetime = @record.recorded_at
   end
 
   def create
     @record = Current.user.records.new(record_params)
     respond_to do |format|
       if @record.save
-        format.html { redirect_to root_path, notice: "思い出を記録しました" }
+        format.html { redirect_to root_path, notice: "記録を作成しました" }
         format.json { render :show, status: :created, location: @record }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -30,9 +31,20 @@ class RecordsController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @record.update(record_params)
+        format.html { redirect_to @record, notice: "記録を編集しました" }
+        format.json { render :show, status: :ok, location: @record }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @record.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
+    @record.destroy
+    redirect_to root_path, notice: "記録を削除しました"
   end
 
   private
