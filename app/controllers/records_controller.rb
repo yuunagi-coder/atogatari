@@ -33,7 +33,7 @@ class RecordsController < ApplicationController
   def update
     respond_to do |format|
       if @record.update(record_params)
-        format.html { redirect_to @record, notice: "記録を編集しました"}
+        format.html { redirect_to @record, notice: "記録を編集しました" }
         format.json { render :show, status: :ok, location: @record }
       else
         format.html { render :edit, status: :unprocessable_entity }
