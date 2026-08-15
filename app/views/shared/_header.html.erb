@@ -1,5 +1,22 @@
-<header>
-  <h1>あとがたり</h1>
-  <button>新規登録</button>
-  <button>ログイン</button>
-</header>
+<nav class="flex flex-col w-1/6 h-screen p-4">
+  <h1 class="text-3xl m-4">あとがたり</h1>
+  <ul class="m-4">
+    <li class="m-6"><%= link_to "地図", root_path, class: "text-xl"%></li>
+    <li class="m-6"><%= link_to "一覧", records_path, class: "text-xl"%></li>
+    <li class="m-6"><%= link_to "+記録する", new_record_path, class: "btn bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded" %></li>
+  </ul>
+
+  <ul class="m-4">
+    <li class="m-2"><%= Current.user.name %></li>
+    <li class="m-2">設定</li>
+    <li class="m-2"><%= button_to "ログアウト", session_path, method: :delete, form: { data: { turbo_confirm: 'ログアウトしますか？'}} %></li>
+  </ul>
+
+  <ul class="m-4">
+    <li class="m-2">あとがたりについて</li>
+    <li class="m-2">使い方ガイド</li>
+    <li class="m-2">お問い合わせ</li>
+    <li class="m-2">プライバシーポリシー</li>
+    <li class="m-2">利用規約</li>
+  </ul>
+</nav>
