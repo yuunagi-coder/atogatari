@@ -43,6 +43,8 @@ class RecordsController < ApplicationController
   end
 
   def destroy
+    @record.destroy
+    redirect_to root_path, notice: "記録を削除しました"
   end
 
   private
