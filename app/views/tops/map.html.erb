@@ -1,15 +1,11 @@
-<h1>MAP</h1>
-<%= button_to "ログアウト", session_path, method: :delete, form: { data: { turbo_confirm: 'ログアウトしますか？'}} %>
-<%= link_to "新規作成", new_record_path %>
-<%= link_to "一覧", records_path %>
-<div id='map' class="h-screen w-full"></div>
+<div id='map' class="h-screen w-5/6"></div>
 
 <script>
   let map
 
   function initMap(){
     map = new google.maps.Map(document.getElementById('map'),{
-      center: { lat: 40.7828, lng: -73.9653 },
+      center: { lat: 35.68147, lng: 139.76696 },
       zoom: 13
     });
     

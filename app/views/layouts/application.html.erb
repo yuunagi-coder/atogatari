@@ -25,6 +25,13 @@
 
   <body class="font-[Zen_Maru_Gothic] h-screen bg-amber-50 text-slate-950">
     <%= render "shared/flash_message"%>
-    <%= yield %>
+    <% if authenticated? %>
+      <div class="flex">
+        <%= render "shared/header" %>
+        <%= yield %>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
