@@ -10,17 +10,19 @@
     </div>
   <% end %>
   <div class="flex flex-col mx-auto w-full space-y-4 mt-8 mb-8">
-    <div class="mb-4">
+    <div class="mb-4" id="spot_name">
       <%= form.label :spot_name, "場所名", class: "block required" %>
       <%= form.text_field :spot_name, class: 'form-control bg-white round mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
       <%= form.label :latitude, "緯度", class: "block required" %>
       <%= form.number_field :latitude, step: "0.000001", class: 'form-control bg-white mt-2 p-2 w-full' %>
+      <p class="text-xs">※　場所名を検索して選択すると自動で入力されます</p>
     </div> 
     <div class="mb-4">
       <%= form.label :longitude, "経度", class: "block required" %>
       <%= form.number_field :longitude, step: "0.000001", class: 'form-control bg-white mt-2 p-2 w-full' %>
+      <p class="text-xs">※　場所名を検索して選択すると自動で入力されます</p>
     </div> 
     <div class="mb-4">
       <%= form.label :recorded_at, "行った日時", class: "block required" %>
@@ -35,3 +37,38 @@
     </div> 
   </div>
 <% end %>
+<script>
+  (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+    key: "<%= Rails.application.credentials.dig(:google, :api_key) %>",
+    v: "weekly",
+  });
+</script>
+<script>
+  async function init() {
+    // PlaceAutocompleteのライブラリの読み込み
+    const { PlaceAutocompleteElement } =
+        await google.maps.importLibrary('places');
+    // Autocomplete機能付きの入力要素を生成
+    const placeAutocomplete = new PlaceAutocompleteElement();
+    // 作成した入力要素を画面に追加
+    document.getElementById("spot_name").appendChild(placeAutocomplete);
+
+    // 候補から場所が選択されたことを検知
+    placeAutocomplete.addEventListener(
+        'gmp-select',
+      async ({ placePrediction }) => {
+            // 選択された候補をPlaceオブジェクトに変換
+            const place = placePrediction.toPlace();
+            // 必要な情報を取得
+            await place.fetchFields({
+                fields: ['displayName', 'location'],
+            });
+            // フォームに自動入力する 
+            document.getElementById("record_spot_name").value = place.displayName;
+            document.getElementById("record_latitude").value = place.location.lat();
+            document.getElementById("record_longitude").value = place.location.lng();
+        }
+    );
+  }
+  void init();
+</script>
