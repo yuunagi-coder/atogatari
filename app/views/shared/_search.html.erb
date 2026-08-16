@@ -1,7 +1,7 @@
   <%= search_form_for @q, url: url do |f| %>
     <%= f.date_field :recorded_at_gteq,class:"m-2" %>
     <span class="m-2">～</span>
-    <%= f.date_field :recorded_at_lteq, class:"m-2" %>
+    <%= f.date_field :recorded_at_lteq_end_of_day, class:"m-2" %>
     <%= f.search_field :spot_name_or_memo_cont, class: 'form-control border border-slate-300 px-2 py-3 m-2', placeholder: '検索'%>
     <%= f.submit '検索', id: "search_button", class: 'btn bg-yellow-500 hover:bg-yellow-600 rounded px-4 py-2 m-2'%>
   <% end %>
