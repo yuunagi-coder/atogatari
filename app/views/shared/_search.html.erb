@@ -1,4 +1,6 @@
-<%= search_form_for @q, url: url do |f| %>
-  <%= f.search_field :spot_name_or_memo, class: 'form-control', placeholder: '検索'%>
-  <%= f.submit '検索', class: 'btn bg-yellow-500 hover:bg-yellow-600'%>
-<% end %>
+<div class="m-4 items-right">
+  <%= search_form_for @q, url: url do |f| %>
+    <%= f.search_field :spot_name_or_memo_cont, class: 'form-control border border-slate-300 px-2 py-3 ', placeholder: '検索'%>
+    <%= f.submit '検索', class: 'btn bg-yellow-500 hover:bg-yellow-600 rounded px-4 py-2'%>
+  <% end %>
+</div>
