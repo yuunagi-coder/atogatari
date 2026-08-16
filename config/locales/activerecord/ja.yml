@@ -4,7 +4,7 @@ ja:
       user: ユーザー
     attributes:
       user:
-        email: メールアドレス
+        email_address: メールアドレス
         passeord: パスワード
         password_confirmation: パスワード確認
       record:

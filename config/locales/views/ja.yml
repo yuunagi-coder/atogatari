@@ -5,12 +5,13 @@ ja:
       submit: 保存する
       update: 修正する
     label:
-      email: メールアドレス
+      email_address: メールアドレス
       password: パスワード
   user_sessions:
     new:
       title: ログイン
       login: ログイン
+      create_user: 新規登録はこちら
   records:
     back: 戻る
   header:
