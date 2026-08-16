@@ -16,9 +16,15 @@
     map = new Map(document.getElementById('map'),{
         center: { lat: 35.68147, lng: 139.76696 },
         zoom: 13,
-        mapId: 'DEMO_MAP_ID'
+        mapId: "532c446984615091d0036809"
     });
     
+    const modal = document.getElementById("markerModal");
+    const modal_close = document.getElementById('modal_close');
+    modal_close.addEventListener('click', function(){
+      modal.classList.add("hidden");
+    });
+
     <% if @records.any? %>
       <% @records.each do |record| %>
         const record_marker_<%= record.id %> = new AdvancedMarkerElement({
@@ -36,9 +42,9 @@
           detailButton_<%= record.id %>.onclick = ()=> {
             window.location.href = "<%= record_path(record.id) %>";
           };
-          const modal = document.getElementById("markerModal");
           modal.classList.remove("hidden");
         });
+
       <% end %>
     <% end %>
   }
