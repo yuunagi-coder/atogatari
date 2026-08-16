@@ -53,9 +53,11 @@
     const { PlaceAutocompleteElement } =
         await google.maps.importLibrary('places');
     // Autocomplete機能付きの入力要素を生成
-    const placeAutocomplete = new PlaceAutocompleteElement();
-    // 作成した入力要素を画面に追加
-    document.getElementById("spot_name").appendChild(placeAutocomplete);
+    if(!document.querySelector("gmp-place-autocomplete")){
+      const placeAutocomplete = new PlaceAutocompleteElement();
+      // 作成した入力要素を画面に追加
+      document.getElementById("spot_name").appendChild(placeAutocomplete);
+    }
 
     // 候補から場所が選択されたことを検知
     placeAutocomplete.addEventListener(
@@ -74,5 +76,10 @@
         }
     );
   }
-  void init();
+
+  document.addEventListener("turbo:load",()=> {
+    if(document.getElementById("spot_name")){
+      init();
+    }
+  })
 </script>
