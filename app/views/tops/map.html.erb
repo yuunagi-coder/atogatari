@@ -1,18 +1,62 @@
+<div class="fixed flex justify-left items-center top-0 right-0 z-50 h-1/9 w-5/6 p-3 bg-amber-50 ">
+  <%= render 'shared/search', q: @q, url: root_path %>
+</div>
 <div id='map' class="relative h-screen w-5/6">
 </div>
 <%= render "modal" %>
-<script>
-  (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-    key: "<%= Rails.application.credentials.dig(:google, :api_key) %>",
-    v: "weekly",
-  });
-</script>
-<script>
-  let map;
 
+<% content_for :head_scripts do %>
+  <script>
+    (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+      key: "<%= Rails.application.credentials.dig(:google, :api_key) %>",
+      v: "weekly",
+    });
+  </script>
+<% end %>
+
+<script>
+  var map;
+  var markers = [];
+  var AdvancedMarkerElement;
+
+  function clearMarkers(){
+    markers.forEach(m => m.map =null);
+    markers = [];
+  }
+
+function renderMarkers(records){
+  clearMarkers();
+
+  records.forEach(record => {
+    const marker = new AdvancedMarkerElement({
+      map,
+      title: record.spot_name,
+      position: { lat: Number(record.latitude), lng: Number(record.longitude) },
+      gmpClickable: true,
+    });
+
+    marker.addEventListener('gmp-click', () => {
+      document.getElementById("modal_spot_name").textContent = record.spot_name;
+      document.getElementById("modal_recorded_at").textContent = record.recorded_at;
+      document.getElementById("modal_memo").textContent = record.memo;
+
+      const detailButton = document.getElementById("modal_detail_button");
+      detailButton.onclick = () => {
+        window.location.href = `/records/${record.id}`;
+      };
+
+      document.getElementById("markerModal").classList.remove("hidden");
+    });
+
+    markers.push(marker);
+  });
+}
+    
   async function init(){
     const { Map } = await google.maps.importLibrary("maps");
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+    const markerLib = await google.maps.importLibrary("marker");
+    AdvancedMarkerElement = markerLib.AdvancedMarkerElement;
+
     map = new Map(document.getElementById('map'),{
         center: { lat: 35.68147, lng: 139.76696 },
         zoom: 13,
@@ -26,33 +70,14 @@
     });
     
     <% if @records.any? %>
-      <% @records.each do |record| %>
-        const record_marker_<%= record.id %> = new AdvancedMarkerElement({
-          map,
-          title: "<%= record.spot_name %>",
-          position: { lat: <%= record.latitude %>, lng: <%= record.longitude %> },
-          gmpClickable: true,
-        });
-
-        record_marker_<%= record.id %>.addEventListener('gmp-click', function(){
-          document.getElementById("modal_spot_name").textContent = "<%= record.spot_name %>"
-          document.getElementById("modal_recorded_at").textContent ="<%= record.recorded_at.strftime("%Y年%m月%d日") %>"
-          document.getElementById("modal_memo").textContent = "<%= record.memo %>"
-          const detailButton_<%= record.id %> = document.getElementById("modal_detail_button");
-          detailButton_<%= record.id %>.onclick = ()=> {
-            window.location.href = "<%= record_path(record.id) %>";
-          };
-          const modal = document.getElementById("markerModal");
-          modal.classList.remove("hidden");
-        });
-
-      <% end %>
+      renderMarkers(<%= raw @records.to_json %>);
     <% end %>
   }
-
+  
   document.addEventListener("turbo:load",() => {
-    if(window.google?.maps){
-      init();
+   if(window.google?.maps){
+     init();
     }
-  })
+  });
+
 </script>
