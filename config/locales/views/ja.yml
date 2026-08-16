@@ -1,9 +1,9 @@
 ja:
   helpers:
     submit:
-      create: 登録
-      submit: 保存
-      update: 更新
+      create: 登録する
+      submit: 保存する
+      update: 修正する
     label:
       email: メールアドレス
       password: パスワード
@@ -11,3 +11,11 @@ ja:
     new:
       title: ログイン
       login: ログイン
+  records:
+    back: 戻る
+  header:
+    record_edit: 編集する
+    record_index: 記録一覧
+    record_new: 記録する
+    record_show: 記録詳細
+    record_destroy: 削除する

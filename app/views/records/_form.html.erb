@@ -11,29 +11,29 @@
   <% end %>
   <div class="flex flex-col mx-auto w-full space-y-4 mt-8 mb-8">
     <div class="mb-4" id="spot_name">
-      <%= form.label :spot_name, "場所名", class: "block required" %>
+      <%= form.label :spot_name, class: "block required" %>
       <%= form.text_field :spot_name, class: 'form-control bg-white round mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
-      <%= form.label :latitude, "緯度", class: "block required" %>
+      <%= form.label :latitude, class: "block required" %>
       <%= form.number_field :latitude, step: "0.000001", class: 'form-control bg-white mt-2 p-2 w-full' %>
       <p class="text-xs">※　場所名を検索して選択すると自動で入力されます</p>
     </div> 
     <div class="mb-4">
-      <%= form.label :longitude, "経度", class: "block required" %>
+      <%= form.label :longitude, class: "block required" %>
       <%= form.number_field :longitude, step: "0.000001", class: 'form-control bg-white mt-2 p-2 w-full' %>
       <p class="text-xs">※　場所名を検索して選択すると自動で入力されます</p>
     </div> 
     <div class="mb-4">
-      <%= form.label :recorded_at, "行った日時", class: "block required" %>
+      <%= form.label :recorded_at, class: "block required" %>
       <%= form.datetime_field :recorded_at, value: @datetime, include_seconds: false, class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
-      <%= form.label :memo, "メモ", class: "block" %>
+      <%= form.label :memo, class: "block" %>
       <%= form.text_area :memo, class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div>
-      <%= form.submit "登録", class: 'btn bg-yellow-500 hover:bg-yellow-600 font-bold py-2 px-4 rounded w-full'%>
+      <%= form.submit class: 'btn bg-yellow-500 hover:bg-yellow-600 font-bold py-2 px-4 rounded w-full'%>
     </div> 
   </div>
 <% end %>
