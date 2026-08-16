@@ -62,8 +62,10 @@
       // 作成した入力要素を画面に追加
       document.getElementById("spot_name").appendChild(placeAutocomplete);
     }
-
+    // 要素を再取得
+    placeAutocomplete = document.querySelector("gmp-place-autocomplete");
     // 候補から場所が選択されたことを検知
+    if(placeAutocomplete){
     placeAutocomplete.addEventListener(
         'gmp-select',
       async ({ placePrediction }) => {
@@ -79,6 +81,7 @@
             document.getElementById("record_longitude").value = Number(place.location.lng().toFixed(6));
         }
     );
+  }
   }
 
   document.addEventListener("turbo:load",()=> {
