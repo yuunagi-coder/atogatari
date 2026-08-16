@@ -1,20 +1,36 @@
 <div id='map' class="h-screen w-5/6"></div>
 
 <script>
-  let map
-
-  function initMap(){
-    map = new google.maps.Map(document.getElementById('map'),{
-      center: { lat: 35.68147, lng: 139.76696 },
-      zoom: 13
-    });
-    
-    marker = new google.maps.Marker({
-      position: { lat: 40.7828, lng: -73.9653 },
-      map: map
-    });
-  }
+  (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+    key: "<%= Rails.application.credentials.dig(:google, :api_key) %>",
+    v: "weekly",
+  });
 </script>
-<script async defer data-turbo-track="reload"
-                    src="https://maps.googleapis.com/maps/api/js?loading=async&key=<%= Rails.application.credentials.dig(:google, :api_key) %>&libraries=maps,marker&callback=initMap">
+<script>
+  let map;
+
+  async function init(){
+    console.log("init called");
+    const { Map } = await google.maps.importLibrary("maps");
+    console.log("Map loaded",Map);
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+    map = new Map(document.getElementById('map'),{
+        center: { lat: 35.68147, lng: 139.76696 },
+        zoom: 13,
+        mapId: 'DEMO_MAP_ID'
+    });
+    console.log("map instance",map);
+      
+    new AdvancedMarkerElement({
+        map,
+        position: { lat: 40.7828, lng: -73.9653 },
+    });
+    console.log("marker instance");
+  }
+
+  document.addEventListener("turbo:load",() => {
+    if(window.google?.maps){
+      init();
+    }
+  })
 </script>
