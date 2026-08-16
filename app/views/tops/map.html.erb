@@ -32,6 +32,10 @@
           document.getElementById("modal_spot_name").textContent = "<%= record.spot_name %>"
           document.getElementById("modal_recorded_at").textContent ="<%= record.recorded_at.strftime("%Y年%m月%d日") %>"
           document.getElementById("modal_memo").textContent = "<%= record.memo %>"
+          const detailButton_<%= record.id %> = document.getElementById("modal_detail_button");
+          detailButton_<%= record.id %>.onclick = ()=> {
+            window.location.href = "<%= record_path(record.id) %>";
+          };
           const modal = document.getElementById("markerModal");
           modal.classList.remove("hidden");
         });
