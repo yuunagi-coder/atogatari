@@ -24,7 +24,7 @@
     modal_close.addEventListener('click', function(){
       modal.classList.add("hidden");
     });
-
+    
     <% if @records.any? %>
       <% @records.each do |record| %>
         const record_marker_<%= record.id %> = new AdvancedMarkerElement({
@@ -42,6 +42,7 @@
           detailButton_<%= record.id %>.onclick = ()=> {
             window.location.href = "<%= record_path(record.id) %>";
           };
+          const modal = document.getElementById("markerModal");
           modal.classList.remove("hidden");
         });
 
