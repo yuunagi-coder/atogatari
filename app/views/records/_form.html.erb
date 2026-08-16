@@ -53,13 +53,19 @@
     const { PlaceAutocompleteElement } =
         await google.maps.importLibrary('places');
     // Autocomplete機能付きの入力要素を生成
-    if(!document.querySelector("gmp-place-autocomplete")){
+    // 既存要素があるか確認
+    let placeAutocomplete = document.querySelector("gmp-place-autocomplete");
+    
+　　// なければ作成
+    if(!placeAutocomplete){
       const placeAutocomplete = new PlaceAutocompleteElement();
       // 作成した入力要素を画面に追加
       document.getElementById("spot_name").appendChild(placeAutocomplete);
     }
-
+    // 要素を再取得
+    placeAutocomplete = document.querySelector("gmp-place-autocomplete");
     // 候補から場所が選択されたことを検知
+    if(placeAutocomplete){
     placeAutocomplete.addEventListener(
         'gmp-select',
       async ({ placePrediction }) => {
@@ -71,15 +77,16 @@
             });
             // フォームに自動入力する 
             document.getElementById("record_spot_name").value = place.displayName;
-            document.getElementById("record_latitude").value = place.location.lat();
-            document.getElementById("record_longitude").value = place.location.lng();
+            document.getElementById("record_latitude").value = Number(place.location.lat().toFixed(6));
+            document.getElementById("record_longitude").value = Number(place.location.lng().toFixed(6));
         }
     );
+  }
   }
 
   document.addEventListener("turbo:load",()=> {
     if(document.getElementById("spot_name")){
       init();
     }
-  })
+  });
 </script>
