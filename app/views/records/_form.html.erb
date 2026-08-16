@@ -17,10 +17,12 @@
     <div class="mb-4">
       <%= form.label :latitude, "緯度", class: "block required" %>
       <%= form.number_field :latitude, step: "0.000001", class: 'form-control bg-white mt-2 p-2 w-full' %>
+      <p class="text-xs">※　場所名を検索して選択すると自動で入力されます</p>
     </div> 
     <div class="mb-4">
       <%= form.label :longitude, "経度", class: "block required" %>
       <%= form.number_field :longitude, step: "0.000001", class: 'form-control bg-white mt-2 p-2 w-full' %>
+      <p class="text-xs">※　場所名を検索して選択すると自動で入力されます</p>
     </div> 
     <div class="mb-4">
       <%= form.label :recorded_at, "行った日時", class: "block required" %>
@@ -51,15 +53,6 @@
     // 作成した入力要素を画面に追加
     document.getElementById("spot_name").appendChild(placeAutocomplete);
 
-    // 選択した場所のタイトル表示用のp要素を作成
-    const selectedPlaceTitle = document.createElement('p');
-    selectedPlaceTitle.textContent = '場所名を入力';
-    document.getElementById("spot_name").appendChild(selectedPlaceTitle);
-　  //場所情報のJSON表示用のpre要素を作成
-    const selectedPlaceInfo = document.createElement('pre');
-    selectedPlaceInfo.textContent = '';
-    document.getElementById("spot_name").appendChild(selectedPlaceInfo);
-
     // 候補から場所が選択されたことを検知
     placeAutocomplete.addEventListener(
         'gmp-select',
@@ -68,15 +61,12 @@
             const place = placePrediction.toPlace();
             // 必要な情報を取得
             await place.fetchFields({
-                fields: ['displayName', 'formattedAddress', 'location'],
+                fields: ['displayName', 'location'],
             });
-            selectedPlaceTitle.textContent = 'Selected Place:';
-            selectedPlaceInfo.textContent = JSON.stringify(
-          　　//SelectedPlaceの欄にJSONで場所情報を返す
-              place.toJSON(),
-                /* replacer */ null,
-                /* space */ 2
-            );
+            // フォームに自動入力する 
+            document.getElementById("record_spot_name").value = place.displayName;
+            document.getElementById("record_latitude").value = place.location.lat();
+            document.getElementById("record_longitude").value = place.location.lng();
         }
     );
   }
