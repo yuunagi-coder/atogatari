@@ -21,9 +21,16 @@
     
     <% if @records.any? %>
       <% @records.each do |record| %>
-        new AdvancedMarkerElement({
+        const record_marker_<%= record.id %> = new AdvancedMarkerElement({
           map,
+          title: "<%= record.spot_name %>",
           position: { lat: <%= record.latitude %>, lng: <%= record.longitude %> },
+          gmpClickable: true,
+        });
+
+        record_marker_<%= record.id %>.addEventListener('gmp-click', function(){
+          const modal = document.getElementById("markerModal");
+          modal.classList.remove("hidden");
         });
       <% end %>
     <% end %>
