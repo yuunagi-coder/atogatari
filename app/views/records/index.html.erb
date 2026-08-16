@@ -2,7 +2,9 @@
   <h1 class="text-3xl">記録一覧</h1>
   <%= render 'shared/flash_message' %>
   <div id="records" class="mx-auto w-4/5 max-w md">
-    <%= render 'shared/search', q: @q, url: records_path %>
+    <div class="m-4">
+      <%= render 'shared/search', q: @q, url: records_path %>
+    </div>  
     <% if @records.any? %>
       <% @records.each do |record| %>
         <%= link_to record, class: "block" do %>

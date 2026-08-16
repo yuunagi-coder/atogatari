@@ -21,6 +21,7 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= yield :head_scripts %>
   </head>
 
   <body class="font-[Zen_Maru_Gothic] h-screen bg-amber-50 text-slate-950">

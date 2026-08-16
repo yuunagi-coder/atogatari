@@ -3,7 +3,8 @@ class TopsController < ApplicationController
 
   def top
     if authenticated?
-      @records = Current.user.records.all.order(created_at: :desc)
+      @q = Current.user.records.ransack(params[:q])
+      @records = @q.result(distinct: true).order(created_at: :desc)
       render :map
     else
       render :top
