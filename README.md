@@ -466,7 +466,7 @@ https://www.figma.com/design/vgdwjZRTS8CfaadSVE33HS/Atogatari?node-id=0-1&t=11X6
 - user_id
 
 ※spotsテーブルの要否について
-Google Maps APIのAutomatic APIの利用を検討しているため、場所名登録時にspotsテーブルを参照する必要性が薄いと考える。
+Google Maps APIのAutocomplete APIの利用を検討しているため、場所名登録時にspotsテーブルを参照する必要性が薄いと考える。
 MVP段階ではrecordsテーブルのみとし、本リリース時に分割することも視野に入れる
 
 ※google_place_idのカラムの要否について
