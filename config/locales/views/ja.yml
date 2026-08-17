@@ -13,6 +13,10 @@ ja:
       title: ログイン
       login: ログイン
       create_user: 新規登録はこちら
+  user:
+    new:
+      title: 新規登録
+      login: ログインはこちら
   records:
     back: 戻る
   header:

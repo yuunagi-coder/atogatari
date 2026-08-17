@@ -11,23 +11,23 @@
   <% end %>
   <div class="flex flex-col mx-auto w-full space-y-4 mt-8 mb-8">
     <div class="mb-4">
-      <%= form.label "ユーザー名", class: "block required" %>
+      <%= form.label :name, class: "block required" %>
       <%= form.text_field :name, class: 'form-control bg-white round mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
-      <%= form.label "メールアドレス", class: "block required" %>
+      <%= form.label :email_address, class: "block required" %>
       <%= form.email_field :email_address, class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
-      <%= form.label "パスワード", class: "block required" %>
+      <%= form.label :password, class: "block required" %>
       <%= form.password_field :password, class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div class="mb-4">
-      <%= form.label "パスワード確認", class: "block required" %>
+      <%= form.label :password_confirmation, class: "block required" %>
       <%= form.password_field :password_confirmation, class: 'form-control bg-white mt-2 p-2 w-full' %>
     </div> 
     <div>
-      <%= form.submit "登録", class: 'btn bg-yellow-500 hover:bg-yellow-600 font-bold py-2 px-4 rounded w-full'%>
+      <%= form.submit class: 'btn bg-yellow-500 hover:bg-yellow-600 font-bold py-2 px-4 rounded w-full'%>
     </div> 
   </div>
 <% end %>

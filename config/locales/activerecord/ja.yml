@@ -4,8 +4,9 @@ ja:
       user: ユーザー
     attributes:
       user:
+        name: ユーザー名
         email_address: メールアドレス
-        passeord: パスワード
+        password: パスワード
         password_confirmation: パスワード確認
       record:
         spot_name: 場所名
