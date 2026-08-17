@@ -4,6 +4,7 @@ ja:
       create: 登録する
       submit: 保存する
       update: 修正する
+      search: 検索
     label:
       email_address: メールアドレス
       password: パスワード
@@ -20,3 +21,5 @@ ja:
     record_new: 記録する
     record_show: 記録詳細
     record_destroy: 削除する
+    map: 地図
+    logout: ログアウト
