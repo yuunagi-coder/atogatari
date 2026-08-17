@@ -1,12 +1,12 @@
 <div class="flex flex-col justify-center items-center h-screen w-full">
-  <h1 class="text-3xl">記録詳細</h1>
+  <h1 class="text-3xl"><%= t('header.record_show') %></h1>
   <div class="mx-auto w-4/5 max-w md">
     <%= render "record", record: @record %>
 
     <div class="flex justify-center items-center mx-auto">
-        <%= link_to "編集", edit_record_path(@record),class: "btn bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded m-4" %>
-        <%= button_to "削除", @record, method: :delete ,class: "btn bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded m-4"%>
+        <%= link_to t('header.record_edit'), edit_record_path(@record),class: "btn bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded m-4" %>
+        <%= button_to t('header.record_destroy'), @record, method: :delete ,class: "btn bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded m-4"%>
     </div>
-    <%= link_to "戻る", 'javascript:history.back()', class: "py-2 px-4 items-left" %>
+    <%= link_to t('records.back'), 'javascript:history.back()', class: "py-2 px-4 items-left" %>
   </div>
 </div>

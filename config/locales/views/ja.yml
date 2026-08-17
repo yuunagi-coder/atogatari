@@ -1,0 +1,29 @@
+ja:
+  helpers:
+    submit:
+      create: 登録する
+      submit: 保存する
+      update: 修正する
+      search: 検索
+    label:
+      email_address: メールアドレス
+      password: パスワード
+  user_sessions:
+    new:
+      title: ログイン
+      login: ログイン
+      create_user: 新規登録はこちら
+  user:
+    new:
+      title: 新規登録
+      login: ログインはこちら
+  records:
+    back: 戻る
+  header:
+    record_edit: 編集する
+    record_index: 記録一覧
+    record_new: 記録する
+    record_show: 記録詳細
+    record_destroy: 削除する
+    map: 地図
+    logout: ログアウト

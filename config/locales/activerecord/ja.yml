@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: ユーザー名
+        email_address: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+      record:
+        spot_name: 場所名
+        latitude: 緯度
+        longitude: 経度
+        recorded_at: 訪れた日時
+        memo: メモ
