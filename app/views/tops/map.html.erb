@@ -26,7 +26,7 @@
     markers.forEach(m => m.map =null);
     markers = [];
   }
-
+// マーカー表示
 function renderMarkers(records){
   clearMarkers();
 
@@ -54,8 +54,9 @@ function renderMarkers(records){
     markers.push(marker);
   });
 }
-    
+   
   async function init(){
+    // マップ表示
     const { Map } = await google.maps.importLibrary("maps");
     const markerLib = await google.maps.importLibrary("marker");
     AdvancedMarkerElement = markerLib.AdvancedMarkerElement;
@@ -65,13 +66,15 @@ function renderMarkers(records){
         zoom: 13,
         mapId: "532c446984615091d0036809"
     });
-    
+
+    // モーダル表示 
     const modal = document.getElementById("markerModal");
     const modal_close = document.getElementById('modal_close');
     modal_close.addEventListener('click', function(){
       modal.classList.add("hidden");
     });
-    
+
+    // マーカー表示
     <% if @records.any? %>
       renderMarkers(<%= raw @records.to_json %>);
     <% end %>
@@ -82,5 +85,7 @@ function renderMarkers(records){
      init();
     }
   });
+
+  init();
 
 </script>

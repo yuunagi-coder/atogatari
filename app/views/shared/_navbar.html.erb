@@ -1,3 +1,31 @@
+<div id="menu" class="fixed top-0 right-0 z-60 w-64 h-5/6 bg-gray-600 text-white p-6 md:hidden hidden shadow-lg">
+  <div class="flex justify-between">
+    <p class="font-bold">
+      その他
+    </p>
+    <button id="menu_close">
+      <%= icon "x-mark", class: "w-5 h-5 m-1" %>
+    </button>
+  </div>
+
+  <ul class="m-4">
+    <li class="m-2"><%= Current.user.name %></li>
+    <li class="m-2">設定※準備中</li>
+  </ul>
+
+  <ul class="m-4">
+    <li class="m-2">あとがたりについて※準備中</li>
+    <li class="m-2">使い方ガイド※準備中</li>
+    <li class="m-2">お問い合わせ※準備中</li>
+    <li class="m-2">プライバシーポリシー※準備中</li>
+    <li class="m-2">利用規約※準備中</li>
+  </ul>
+
+  <ul class="m-4">
+    <li class="m-2"><%= button_to t('header.logout'), session_path, method: :delete, form: { data: { turbo_confirm: 'ログアウトしますか？'}} %></li>
+  </ul>
+</div>
+
 <nav class="flex h-1/6 p-4 w-full">
   <ul class="m-4 flex w-full">
     <li class="m-6 w-1/4">
@@ -19,8 +47,30 @@
       <% end %>
     </li>
     <li class="m-6 w-1/4">
-      <%= icon "cog-6-tooth", class: "w-11 h-11 m-1" %>
-      <span class="text-xs m-1">その他</span>
+      <button id="menu_open" class="md:hidden text-l">
+        <%= icon "cog-6-tooth", class: "w-11 h-11 m-1" %>
+        <span class="text-xs m-1">その他</span>
+      </button>
     </li>
   </ul>
 </nav>
+
+<script>
+  async function initNavbar(){
+    // menu表示 
+    document.addEventListener("turbo:load",() => {
+      const menu = document.getElementById("menu");
+      const menu_close = document.getElementById('menu_close');
+      const menu_open = document.getElementById('menu_open');
+
+      menu_close.addEventListener('click', function(){
+        menu.classList.add("hidden");
+      });
+      
+      menu_open.addEventListener('click', function(){
+        menu.classList.remove("hidden");
+      });
+    });
+  };
+  initNavbar();
+</script>
