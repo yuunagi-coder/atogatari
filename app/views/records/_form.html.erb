@@ -84,9 +84,11 @@
   }
   }
 
-  document.addEventListener("turbo:load",()=> {
-    if(document.getElementById("spot_name")){
-      initForm();
-    }
+  ["turbo:load", "turbo:render"].forEach((enventName) => {
+    document.addEventListener(enventName,()=> {
+      if(document.getElementById("spot_name")){
+        initForm();
+      }
+    });
   });
 </script>
