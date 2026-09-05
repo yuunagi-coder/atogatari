@@ -1,18 +1,26 @@
-<nav class="flex h-1/6 p-4">
-  <ul class="m-4 flex">
-    <li class="m-6">
-      <%= link_to root_path, class: "w-11 h-11" do %>
-        <%= icon "map", class: "w-9 h-9 m-1" %>
+<nav class="flex h-1/6 p-4 w-full">
+  <ul class="m-4 flex w-full">
+    <li class="m-6 w-1/4">
+      <%= link_to root_path, class: "w-13 h-13" do %>
+        <%= icon "map", class: "w-11 h-11 m-1" %>
         <span class="text-xs m-1"><%= t('header.map') %></span>
       <% end %>
     </li>
-    <li class="m-6">
-      <%= link_to records_path, class: "w-11 h-11" do %>
-        <%= icon "list-bullet", class: "w-9 h-9 m-1" %>
+    <li class="m-6 w-1/4">
+      <%= link_to records_path, class: "w-13 h-13" do %>
+        <%= icon "list-bullet", class: "w-11 h-11 m-1" %>
         <span class="text-xs m-1"><%= t('header.record_index') %></span>
       <% end %>
     </li>
-    <li class="m-6"><%= link_to t('header.record_new'), new_record_path, class: "btn bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded" %></li>
-    <li class="m-6 text-xl">その他</li>
+    <li class="m-6 w-1/4">
+      <%= link_to new_record_path, class: "w-13 h-13" do %>
+        <%= icon "pencil", class: "w-11 h-11 m-1" %>
+        <span class="text-xs m-1"><%= t('header.record_new') %></span>
+      <% end %>
+    </li>
+    <li class="m-6 w-1/4">
+      <%= icon "cog-6-tooth", class: "w-11 h-11 m-1" %>
+      <span class="text-xs m-1">その他</span>
+    </li>
   </ul>
 </nav>
