@@ -1,9 +1,24 @@
 <nav class="flex flex-col h-screen p-4">
   <h1 class="text-3xl m-4">あとがたり</h1>
   <ul class="m-4">
-    <li class="m-6"><%= link_to t('header.map'), root_path, class: "text-xl"%></li>
-    <li class="m-6"><%= link_to t('header.record_index'), records_path, class: "text-xl"%></li>
-    <li class="m-6"><%= link_to t('header.record_new'), new_record_path, class: "btn bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded" %></li>
+    <li class="m-6 flex">
+      <%= link_to root_path, class: "text-xl flex" do %>
+        <%= icon "map", class: "h-6 w-6 m-1" %>
+        <span class="text-xl m-1"><%= t('header.map') %></span>
+      <% end %>
+    </li>
+    <li class="m-6 flex">
+      <%= link_to records_path, class: "text-xl flex" do %>
+        <%= icon "list-bullet", class: "w-6 h-6 m-1" %>
+        <span class="text-xl m-1"><%= t('header.record_index') %></span>
+      <% end %>
+    </li>
+    <li class="m-6 flex">
+      <%= link_to new_record_path, class: "text-xl flex btn bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded" do %>
+        <%= icon "pencil", class: "w-6 h-6 m-1" %>
+        <span class="text-xl m-1"><%= t('header.record_new') %></span>
+      <% end %>
+    </li>
   </ul>
 
   <ul class="m-4">
