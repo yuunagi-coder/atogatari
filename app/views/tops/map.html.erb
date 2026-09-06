@@ -39,8 +39,10 @@ function renderMarkers(records){
     });
 
     marker.addEventListener('gmp-click', () => {
+      const recorded_at = new Date(record.recorded_at);
+      const formatted_recorded_at = `${recorded_at.getFullYear()}年${String(recorded_at.getMonth() + 1).padStart(2, '0')}月${String(recorded_at.getDate()).padStart(2, '0')}日`
       document.getElementById("modal_spot_name").textContent = record.spot_name;
-      document.getElementById("modal_recorded_at").textContent = record.recorded_at;
+      document.getElementById("modal_recorded_at").textContent = formatted_recorded_at;
       document.getElementById("modal_memo").textContent = record.memo;
 
       const detailButton = document.getElementById("modal_detail_button");
