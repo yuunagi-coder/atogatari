@@ -10,7 +10,9 @@
 
   <ul class="m-4">
     <li class="m-2"><%= Current.user.name %></li>
-    <li class="m-2">設定※準備中</li>
+    <li class="m-2">
+      <%= link_to t('user.edit.title'), edit_user_path %>
+    </li>
   </ul>
 
   <ul class="m-4">

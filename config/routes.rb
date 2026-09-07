@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "tops#top"
 
-  resource :user, only: %i[new create]
+  resource :user, only: %i[new edit update create]
   resource :session, only: %i[new create destroy]
   resources :records, only: %i[new show index edit create update destroy]
 
