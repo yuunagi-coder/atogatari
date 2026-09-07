@@ -11,7 +11,7 @@ class RecordsController < ApplicationController
 
   def index
     @q = Current.user.records.ransack(params[:q])
-    @records = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(3)
+    @records = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(4)
   end
 
   def edit

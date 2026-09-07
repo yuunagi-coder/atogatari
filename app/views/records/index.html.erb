@@ -12,7 +12,9 @@
         <% end %>
       <% end %>
       <% #ページネーションを表示 %>
-      <%= paginate @records %>
+      <div class="flex justify-center items-center w-full mt-10">
+        <%= paginate @records %>
+      </div>
     <% else %>
       <div class="flex flex-col justify-center mx-auto items-center">
         <p class="text-xl text-center m-10">思い出が記録されていないようです</p>
