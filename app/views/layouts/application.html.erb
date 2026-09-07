@@ -24,12 +24,17 @@
     <%= yield :head_scripts %>
   </head>
 
-  <body class="font-[Zen_Maru_Gothic] h-screen bg-amber-50 text-slate-950">
+  <body class="font-[Zen_Maru_Gothic] h-screen bg-amber-50 text-slate-950 overflow-hidden">
     <%= render "shared/flash_message"%>
     <% if authenticated? %>
-      <div class="flex">
-        <%= render "shared/header" %>
+      <div class="flex max-md:flex-col h-screen">
+        <div class="hidden md:block w-1/6">
+         <%= render "shared/header" %>
+        </div>
         <%= yield %>
+        <div class="md:hidden block h-1/6">
+          <%= render "shared/navbar"%>
+        </div>
       </div>
     <% else %>
       <%= yield %>

@@ -27,3 +27,9 @@ ja:
     record_destroy: 削除する
     map: 地図
     logout: ログアウト
+  views:
+    pagination:
+      truncate: '. . .'
+      next: '>'
+      previous: '<'
+

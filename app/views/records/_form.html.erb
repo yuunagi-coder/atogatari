@@ -48,7 +48,7 @@
 <% end %>
 
 <script>
-  async function init() {
+  async function initForm() {
     // PlaceAutocompleteのライブラリの読み込み
     const { PlaceAutocompleteElement } =
         await google.maps.importLibrary('places');
@@ -84,9 +84,11 @@
   }
   }
 
-  document.addEventListener("turbo:load",()=> {
-    if(document.getElementById("spot_name")){
-      init();
-    }
+  ["turbo:load", "turbo:render"].forEach((enventName) => {
+    document.addEventListener(enventName,()=> {
+      if(document.getElementById("spot_name")){
+        initForm();
+      }
+    });
   });
 </script>

@@ -1,9 +1,12 @@
-<div class="fixed flex justify-left items-center top-0 right-0 z-50 h-1/9 w-5/6 p-3 bg-amber-50 ">
+<div class="flex flex-col md:w-5/6 max-md:h-5/6">
+<div class="flex justify-left items-center top-0 right-0 z-50 md:h-1/9 h-1/8 p-3 bg-amber-50 ">
+  <h1 class="m-4 md:hidden">あとがたり</h1>
   <%= render 'shared/search', q: @q, url: root_path %>
 </div>
-<div id='map' class="relative h-screen w-5/6">
+<div id='map' class="relative md:h-8/9 h-7/8 w-full">
 </div>
 <%= render "modal" %>
+</div>
 
 <% content_for :head_scripts do %>
   <script>
@@ -23,7 +26,7 @@
     markers.forEach(m => m.map =null);
     markers = [];
   }
-
+// マーカー表示
 function renderMarkers(records){
   clearMarkers();
 
@@ -36,8 +39,10 @@ function renderMarkers(records){
     });
 
     marker.addEventListener('gmp-click', () => {
+      const recorded_at = new Date(record.recorded_at);
+      const formatted_recorded_at = `${recorded_at.getFullYear()}年${String(recorded_at.getMonth() + 1).padStart(2, '0')}月${String(recorded_at.getDate()).padStart(2, '0')}日`
       document.getElementById("modal_spot_name").textContent = record.spot_name;
-      document.getElementById("modal_recorded_at").textContent = record.recorded_at;
+      document.getElementById("modal_recorded_at").textContent = formatted_recorded_at;
       document.getElementById("modal_memo").textContent = record.memo;
 
       const detailButton = document.getElementById("modal_detail_button");
@@ -51,8 +56,9 @@ function renderMarkers(records){
     markers.push(marker);
   });
 }
-    
+   
   async function init(){
+    // マップ表示
     const { Map } = await google.maps.importLibrary("maps");
     const markerLib = await google.maps.importLibrary("marker");
     AdvancedMarkerElement = markerLib.AdvancedMarkerElement;
@@ -62,13 +68,15 @@ function renderMarkers(records){
         zoom: 13,
         mapId: "532c446984615091d0036809"
     });
-    
+
+    // モーダル表示 
     const modal = document.getElementById("markerModal");
     const modal_close = document.getElementById('modal_close');
     modal_close.addEventListener('click', function(){
       modal.classList.add("hidden");
     });
-    
+
+    // マーカー表示
     <% if @records.any? %>
       renderMarkers(<%= raw @records.to_json %>);
     <% end %>
@@ -79,5 +87,7 @@ function renderMarkers(records){
      init();
     }
   });
+
+  init();
 
 </script>
