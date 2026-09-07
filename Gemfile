@@ -16,6 +16,8 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails"
+# pagenation
+gem "kaminari"
 # Heroicons
 gem "rails_icons"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
