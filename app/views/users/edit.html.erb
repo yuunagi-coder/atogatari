@@ -1,0 +1,8 @@
+
+<div class="flex flex-col justify-center items-center h-screen w-full">
+  <div class="w-full max-w-md mx-auto">
+    <h2 class="text-2xl mb-2 text-center"><%= t('user.edit.title') %></h2>
+    <%= render "form", user: @user %>
+    <%= link_to t('user.new.login'), new_session_path, class:"py-2 px-4" %>
+  </div>
+</div>
