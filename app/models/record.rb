@@ -6,6 +6,8 @@ class Record < ApplicationRecord
   validates :longitude, presence: true
   validates :recorded_at, presence: true
 
+  has_one_attached :photo
+
   def self.ransackable_attributes(auth_object = nil)
     %w[memo recorded_at spot_name]
   end

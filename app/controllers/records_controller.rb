@@ -56,7 +56,7 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record)
-          .permit(:spot_name, :latitude, :longitude, :recorded_at, :memo)
+          .permit(:spot_name, :latitude, :longitude, :recorded_at, :memo, :photo)
           .merge(user_id: Current.user.id)
   end
 end
