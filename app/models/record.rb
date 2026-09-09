@@ -19,7 +19,7 @@ class Record < ApplicationRecord
 
   def default_photo
     if !self.photo.attatched?
-      self.photo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'top_page.png')), filename: 'default_image.png', content_type: 'image/png')
+      self.photo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default_image.jpg')), filename: 'default_image.jpg', content_type: 'image/jpg')
     end
   end
 end
