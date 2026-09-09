@@ -45,7 +45,9 @@ function renderMarkers(records){
       document.getElementById("modal_recorded_at").textContent = formatted_recorded_at;
       document.getElementById("modal_memo").textContent = record.memo;
       if (!!record.photo_url){
-        document.getElementById("modale_photo").src = record.photo_url;
+        document.getElementById("modal_photo").src = record.photo_url;
+      } else {
+        document.getElementById("modal_photo").src = ""
       }
       
       const detailButton = document.getElementById("modal_detail_button");
