@@ -6,11 +6,11 @@
       <p id="modal_recorded_at" class="text-s mb-3">記録した日</p>
       <p id="modal_memo" class="text-l">メモ</p>
     </div>
-    <%= image_tag "top_page.png",
-      id: "modal_photo",
-      class: "img-resize, rounded mc-auto d-block",
-      style: "width: 50%; height: 100%; object-fit: contain;"
-      %>
+    <img id="modal_photo",
+      class="img-resize, rounded mc-auto d-block",
+      style: "width: 50%; height: 100%; object-fit: contain;",
+      src=""
+    >
     <button id="modal_detail_button" class="fixed md:bottom-6 bottom-46 mt-3 px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded">
       <%= t('header.record_show') %>
     </button>

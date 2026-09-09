@@ -1,5 +1,6 @@
 class Record < ApplicationRecord
   belongs_to :user
+  before_create :default_photo
 
   validates :spot_name, presence: true, length: { maximum: 30 }
   validates :latitude, presence: true
@@ -14,5 +15,11 @@ class Record < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     %w[user]
+  end
+
+  def default_photo
+    if !self.photo.attatched?
+      self.photo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'top_page.png')), filename: 'default_image.png', content_type: 'image/png')
+    end
   end
 end
