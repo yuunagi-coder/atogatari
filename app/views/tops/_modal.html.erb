@@ -1,11 +1,17 @@
 <div id="markerModal" class="fixed bottom-40 w-full md:bottom-0 md:right-0 z-50 h-2/6 md:w-5/6 p-4 hidden">
-  <div class="bg-amber-50 p-4 h-full rounded-xl">
-    <button id="modal_close" class="text-xl">×</button>
-    <h1 id="modal_spot_name" class="text-xl">場所名</h1>
-    <p id="modal_recorded_at" class="text-s mb-3">記録した日</p>
-    <p id="modal_memo" class="text-l">メモ</p>
-
-    <button id="modal_detail_button" class="fixed bottom-6 mt-3 px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded">
+  <div class="flex justify-between bg-amber-50 p-4 h-full rounded-xl">
+    <div class="m-2 flex flex-col">
+      <button id="modal_close" class="text-xl text-left">×</button>
+      <h1 id="modal_spot_name" class="text-xl">場所名</h1>
+      <p id="modal_recorded_at" class="text-s mb-3">記録した日</p>
+      <p id="modal_memo" class="text-l">メモ</p>
+    </div>
+    <div class="h-full aspect-square overflow-hidden rounded-3xl">
+      <img id="modal_photo"
+        class="img-resize w-full h-full object-cover"
+        src="">
+    </div>
+    <button id="modal_detail_button" class="fixed md:bottom-6 bottom-46 mt-3 px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded">
       <%= t('header.record_show') %>
     </button>
   </div>

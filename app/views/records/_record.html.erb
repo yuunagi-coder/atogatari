@@ -14,4 +14,12 @@
       <%= record.memo %>
     </p>
   </div>
+  <% if record.photo.present? %>
+    <div class="m-4 items-center">
+      <%= image_tag record.photo,
+        class: "img-resize, rounded mx-auto d-block",
+        style: "width: 50%; height: 100%; object-fit: contain;"
+        %>
+    </div>  
+  <% end %>
 </div>
