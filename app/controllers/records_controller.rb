@@ -20,6 +20,10 @@ class RecordsController < ApplicationController
 
   def create
     @record = Current.user.records.new(record_params)
+    
+    if !@record.photo.attached?
+      @record.photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_image.jpg")), filename: "default_image.jpg", content_type: "image/jpg")
+    end
     respond_to do |format|
       if @record.save
         format.html { redirect_to root_path, notice: "記録を作成しました" }

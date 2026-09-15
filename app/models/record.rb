@@ -1,6 +1,5 @@
 class Record < ApplicationRecord
   belongs_to :user
-  before_create :default_photo
 
   validates :spot_name, presence: true, length: { maximum: 30 }
   validates :latitude, presence: true
@@ -17,9 +16,4 @@ class Record < ApplicationRecord
     %w[user]
   end
 
-  def default_photo
-    if !self.photo.attached?
-      self.photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_image.jpg")), filename: "default_image.jpg", content_type: "image/jpg")
-    end
-  end
 end
