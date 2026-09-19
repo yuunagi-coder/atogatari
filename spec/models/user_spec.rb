@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
       valid_user = FactoryBot.build(:user)
       expect(valid_user).to be_valid
     end
-    
+
     it 'ユーザー名が空白の場合は無効' do
       user_without_name = FactoryBot.build(:user, name: '')
       expect(user_without_name).to be_invalid

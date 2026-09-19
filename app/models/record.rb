@@ -15,5 +15,4 @@ class Record < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     %w[user]
   end
-
 end
