@@ -36,6 +36,7 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
@@ -47,7 +48,13 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   
-  driven_by :rack_test
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_chrome_headless
+  end
+  
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
@@ -75,6 +82,3 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-config.before(:each, type: :system, js: true) do
-  driven_by :selenium_chrome_headless
-end
