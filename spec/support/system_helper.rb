@@ -12,4 +12,3 @@ end
 RSpec.configure do |config|
   config.include SystemHelper, type: :system
 end
-

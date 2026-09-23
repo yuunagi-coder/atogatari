@@ -5,7 +5,7 @@ RSpec.describe "Sessions", type: :system do
   describe "ログイン機能" do
     it "正しいタイトルが表示されていること" do
       visit '/session/new'
-      expect(page).to have_content("ログイン"),"ページに「ログイン」が含まれていません"
+      expect(page).to have_content("ログイン"), "ページに「ログイン」が含まれていません"
     end
 
     context "認証情報が正しい場合" do
@@ -32,7 +32,7 @@ RSpec.describe "Sessions", type: :system do
       end
     end
   end
-  
+
   describe "ログアウト機能" do
     before do
       login_as(user)
