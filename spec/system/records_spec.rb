@@ -142,5 +142,42 @@ RSpec.describe "Records", type: :system do
         end
       end
     end
+
+    describe '記録の更新' do
+      before { record }
+      context 'ログインしていない場合' do
+        it 'ログインページにリダイレクトされること' do
+          visit edit_record_path(record)
+          expect(current_path).to eq('/session/new'), 'ログインページにリダイレクトされていません'
+        end
+      end
+      context 'ログインしている場合' do
+        before do
+          login_as(user)
+          visit records_path
+          click_on 'test'
+          Capybara.assert_current_path("/records/#{record.id}", ignore_query: true)
+          click_on '編集する'
+        end
+        it '記録が更新できること' do
+          fill_in '場所名', with: '編集後テスト場所名'
+          fill_in 'メモ', with: '編集後テストメモ'
+          click_button '修正する'
+          Capybara.assert_current_path("/records/#{record.id}", ignore_query: true)
+          expect(current_path).to eq record_path(record)
+          expect(page).to have_content('記録を編集しました'), 'フラッシュメッセージ「記録を編集しました」が表示されていません'
+          expect(page).to have_content('編集後テスト場所名'), '更新後の場所名が表示されていません'
+          expect(page).to have_content('編集後テストメモ'), '更新後のメモが表示されていません'
+        end
+
+        it '記録の作成に失敗すること' do
+          fill_in '場所名', with: '編集後テスト場所名'
+          fill_in '緯度', with: ''
+          click_button '修正する'
+          expect(page).to have_content('件のエラーがあります'), 'エラーメッセージが表示されていません'
+        end
+      end
+    end
+
   end
 end
