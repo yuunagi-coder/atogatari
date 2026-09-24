@@ -179,5 +179,16 @@ RSpec.describe "Records", type: :system do
       end
     end
 
+    describe '記録の削除' do
+      before { board }
+      it '記録が削除できること' do
+        login_as(user)
+        visit 'records'
+        click_on 'test'
+        click_on '削除する'
+        expect(current_path).to eq('/'), '記録削除後にトップページに遷移していません'
+        expect(page).to have_content('記録を削除しました'), 'フラッシュメッセージ「記録を削除しました」が表示されていません'
+      end
+    end
   end
 end
