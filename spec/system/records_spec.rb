@@ -180,7 +180,7 @@ RSpec.describe "Records", type: :system do
     end
 
     describe '記録の削除' do
-      before { board }
+      before { record }
       it '記録が削除できること' do
         login_as(user)
         visit 'records'
