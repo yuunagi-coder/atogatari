@@ -48,14 +48,16 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  config.before(:each, type: :system, js: true) do
-    driven_by :selenium_chrome_headless
-  end
-
   config.before(:each, type: :system) do
     driven_by :rack_test
   end
 
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_chrome_headless
+  end
+
+  Capybara.javascript_driver = :selenium_chrome_headless
+  
   config.include FactoryBot::Syntax::Methods
 
   Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }

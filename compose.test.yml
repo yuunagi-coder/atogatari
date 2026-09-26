@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    environment:
+      TZ: Asia/Tokyo
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgresql_data:/var/lib/postgresql
+    ports:
+      - 5433:5432   # テスト用にポートをずらす
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d myapp_test -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev   # 本番用 Dockerfile を触らない
+    command: bash -c "bundle exec rspec"
+    environment:
+      RAILS_ENV: test
+      TZ: Asia/Tokyo
+      SELENIUM_REMOTE_URL: http://chrome:4444/wd/hub
+    volumes:
+      - .:/myapp
+    depends_on:
+      - db
+      - chrome
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    shm_size: 2gb
+
+volumes:
+  postgresql_data:
