@@ -47,7 +47,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 2.1"
+gem "image_processing", "~> 1.2"
 gem "aws-sdk-s3"
 
 group :development, :test do
@@ -76,4 +76,5 @@ group :test do
   gem 'selenium-webdriver', '>= 4.49'
   gem "webdrivers"
   gem "factory_bot_rails"
+  gem 'simplecov', require: false
 end
