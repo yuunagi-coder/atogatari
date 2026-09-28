@@ -36,6 +36,7 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -56,11 +57,8 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless
   end
 
-  Capybara.javascript_driver = :selenium_chrome_headless
-  
   config.include FactoryBot::Syntax::Methods
 
-  Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 

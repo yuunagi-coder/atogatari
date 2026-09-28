@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe "Maps", type: :system, js: true do
   let(:user1){ create(:user, name: 'テスト１') }
   let(:user2){ create(:user, name: 'テスト２') }
-  let(:record1) { create(:record, user: user1, spot_name: '東京駅', memo: '美しい', recorded_at: '2026/09/25 06:23')}
-  let(:record2) { create(:record, user: user1, spot_name: 'ディズニーランド', memo: '楽しい', recorded_at: '2026/09/24 06:23')}
-  let(:record3) { create(:record, user: user2, spot_name: '有楽町駅', memo: 'わくわく', recorded_at: '2026/09/23 11:00')}
+  let(:record1) { create(:record, user: user1, spot_name: '東京駅', latitude: 35.68098, longitude: 139.767057, memo: '美しい', recorded_at: '2026/09/25 06:23')}
+  let(:record2) { create(:record, user: user1, spot_name: 'スカイツリー', latitude: 35.709994, longitude: 139.80865, memo: '楽しい', recorded_at: '2026/09/24 06:23')}
+  let(:record3) { create(:record, user: user2, spot_name: '有楽町駅', latitude: 35.675013, longitude: 139.76302, memo: 'わくわく', recorded_at: '2026/09/23 11:00')}
 
   describe 'マップ機能' do
     context 'ログインしていない場合' do
@@ -39,7 +39,6 @@ RSpec.describe "Maps", type: :system, js: true do
         it '自分のマーカーのみ表示されること' do
           visit '/'
           expect(page).to have_css('gmp-advanced-marker[title="東京駅"]', wait: 10),'ログインしたユーザーの記録が表示されていません'
-          expect(page).to have_css('gmp-advanced-marker[title="ディズニーランド"]'),'ログインしたユーザーの記録が表示されていません'
           expect(page).not_to have_css('gmp-advanced-marker[title="有楽町駅"]'),'他のユーザーの記録が表示されています'
         end
         it 'マーカーをクリックするとモーダルが表示されること' do
@@ -49,9 +48,9 @@ RSpec.describe "Maps", type: :system, js: true do
           expect(find('#modal_spot_name')).to have_content(record1.spot_name),'モーダルに正しい情報が表示されていません'
           
           click_button("×")
-          expect(page).not_to have selector('#markerModal'),'モーダルを閉じていません'
+          expect(page).not_to have_selector('#markerModal'),'モーダルを閉じていません'
           
-          find('gmp-advanced-marker[title="ディズニーランド"]').click
+          find('gmp-advanced-marker[title="スカイツリー"]').click
           expect(page).to have_selector('#markerModal'),'モーダルが表示されていません'
           expect(find('#modal_spot_name')).to have_content(record2.spot_name),'モーダルに正しい情報が表示されていません'
         end
