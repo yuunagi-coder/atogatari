@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Records", type: :system do
   let(:user){ create(:user) }
+  let(:another_user){ create(:user) }
   let(:record){ create(:record, user: user) }
+  let(:record_another){ create(:record, user: another_user) }
 
   describe '記録のCRUD' do
     describe '記録一覧' do
@@ -188,6 +190,25 @@ RSpec.describe "Records", type: :system do
         click_on '削除する'
         expect(current_path).to eq('/'), '記録削除後にトップページに遷移していません'
         expect(page).to have_content('記録を削除しました'), 'フラッシュメッセージ「記録を削除しました」が表示されていません'
+      end
+    end
+
+    describe '他のユーザーの記録を見られない' do
+      before do  
+        record
+        record_another
+      end
+      it '記録編集画面に遷移できないこと' do
+        login_as(user)
+        visit edit_record_path(record_another)
+        expect(current_path).to eq(root_path),'他のユーザーの記録編集画面に遷移しています'
+        expect(page).to have_content('権限がありません'), 'アクセス制御メッセージが表示されていません'
+      end
+      it '記録詳細画面に遷移できないこと' do
+        login_as(user)
+        visit record_path(record_another)
+        expect(current_path).to eq(root_path),'他のユーザーの記録詳細画面に遷移しています'
+        expect(page).to have_content('権限がありません'), 'アクセス制御メッセージが表示されていません'
       end
     end
   end
