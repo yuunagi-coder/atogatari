@@ -1,5 +1,6 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: [ :show, :edit, :destroy, :update ]
+  before_action :authorize_user!, only: [ :edit, :update, :show ]
 
   def new
     @record = Record.new
@@ -20,7 +21,7 @@ class RecordsController < ApplicationController
 
   def create
     @record = Current.user.records.new(record_params)
-    
+
     if !@record.photo.attached?
       @record.photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_image.jpg")), filename: "default_image.jpg", content_type: "image/jpg")
     end
@@ -62,5 +63,9 @@ class RecordsController < ApplicationController
     params.require(:record)
           .permit(:spot_name, :latitude, :longitude, :recorded_at, :memo, :photo)
           .merge(user_id: Current.user.id)
+  end
+
+  def authorize_user!
+    redirect_to root_path, alert: '権限がありません' unless @record.user == Current.user
   end
 end

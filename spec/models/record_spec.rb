@@ -13,7 +13,7 @@ RSpec.describe Record, type: :model do
     end
 
     it '場所名が31字以上の場合は無効' do
-      record_more_than_spot_name = FactoryBot.build(:record, spot_name: "a"*31 )
+      record_more_than_spot_name = FactoryBot.build(:record, spot_name: "a"*31)
       expect(record_more_than_spot_name).to be_invalid
     end
 
