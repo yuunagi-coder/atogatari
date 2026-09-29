@@ -11,7 +11,7 @@ class RecordsController < ApplicationController
   end
 
   def index
-    @q = Current.user.records.ransack(params[:q])
+    @q = Current.user.records.includes(:photo_attachment).ransack(params[:q])
     @records = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(4)
   end
 
