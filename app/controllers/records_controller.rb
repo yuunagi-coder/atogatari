@@ -28,7 +28,7 @@ class RecordsController < ApplicationController
       @record.photo.attach(io: File.open(Rails.root.join("app", "assets", "images", "default_image.jpg")), filename: "default_image.jpg", content_type: "image/jpg")
     end
     if @record.save
-      respond_with_success(root_path, message: "記録を作成しました", status: :created)
+      respond_with_success(root_path, message: "記録を作成しました", status: :created, location: @record)
     else
       respond_with_error(:new, @record)
     end
@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
 
   def update
     if @record.update(record_params)
-      respond_with_success(@record, message: "記録を編集しました", status: :ok)
+      respond_with_success(@record, message: "記録を編集しました", status: :ok, location: @record)
     else
       respond_with_error(:edit, @record)
     end

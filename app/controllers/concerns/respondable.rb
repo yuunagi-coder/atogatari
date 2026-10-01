@@ -1,10 +1,10 @@
 module Respondable
   extend ActiveSupport::Concern
 
-  def respond_with_success(view, message:, status:)
+  def respond_with_success(view, message:, status:, location:)
     respond_to do |format|
       format.html { redirect_to view, notice: message }
-      format.json { render :show, status: status, location: @record }
+      format.json { render :show, status: status, location: location }
     end
   end
 
