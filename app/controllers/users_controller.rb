@@ -25,9 +25,9 @@ class UsersController < ApplicationController
     @user = Current.user
 
     if @user.update(user_params)
-      respond_with_success(edit_user_path(@user), message: "ユーザーの更新に成功しました", status: ok, location: @user)
+      respond_with_success(edit_user_path(@user), message: "ユーザーの更新に成功しました", status: :ok, location: @user)
     else
-      respond_with_success(:edit, @user)
+      respond_with_error(:edit, @user)
     end
   end
 
