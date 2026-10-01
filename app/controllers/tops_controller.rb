@@ -3,7 +3,7 @@ class TopsController < ApplicationController
 
   def top
     if authenticated?
-      @q = Current.user.records.includes(:photo_attachment).ransack(params[:q])
+      @q = Current.user.records.with_images.ransack(params[:q])
       @result = @q.result(distinct: true).order(created_at: :desc)
       @records = @result.map do |record|
         {
