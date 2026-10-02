@@ -60,6 +60,6 @@ class RecordsController < ApplicationController
   end
 
   def authorize_user!
-    redirect_to root_path, alert: '権限がありません' unless @record.user == Current.user
+    redirect_to root_path, alert: "権限がありません" unless @record.user == Current.user
   end
 end

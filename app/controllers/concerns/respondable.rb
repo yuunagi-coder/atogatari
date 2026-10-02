@@ -15,4 +15,3 @@ module Respondable
     end
   end
 end
-

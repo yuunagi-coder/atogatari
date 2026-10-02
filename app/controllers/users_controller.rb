@@ -13,9 +13,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    
+
     if @user.save
-    respond_with_success(new_session_path, message: "ユーザーの新規登録に成功しました", status: :created, location: @user) 
+    respond_with_success(new_session_path, message: "ユーザーの新規登録に成功しました", status: :created, location: @user)
     else
       respond_with_error(:new, @user)
     end
