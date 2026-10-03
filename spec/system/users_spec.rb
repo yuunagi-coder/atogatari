@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "ユーザー登録", type: :system do
-  let(:user){ create(:user) }
+  let(:user) { create(:user) }
 
   it '正しいタイトルが表示されていること' do
     visit '/user/new'
@@ -26,15 +26,15 @@ RSpec.describe "ユーザー登録", type: :system do
       login_as(user)
       visit edit_user_path
       expect(page).to have_content('test')
-      
+
       fill_in 'ユーザー名', with: 'テスト修正後'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード確認', with: 'password'
       click_button '修正する'
       Capybara.assert_current_path("/user/edit.#{user.id}", ignore_query: true)
-      
-      expect(page).to have_content('ユーザーの更新に成功しました'),"フラッシュメッセージが表示されていません"
-      expect(page).to have_content('テスト修正後'),"ユーザー名が更新されていません"
+
+      expect(page).to have_content('ユーザーの更新に成功しました'), "フラッシュメッセージが表示されていません"
+      expect(page).to have_content('テスト修正後'), "ユーザー名が更新されていません"
     end
   end
 
