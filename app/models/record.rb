@@ -7,8 +7,15 @@ class Record < ApplicationRecord
   validates :recorded_at, presence: true
 
   has_one_attached :photo
+  validate :photo_content_type
 
   scope :with_images, -> { includes(:photo_attachment) }
+
+  def photo_content_type
+    if photo.attached? && !photo.content_type.in?(%w[image/jpeg image/png image/gif])
+      errors.add(:photo, "ファイル形式がJPEG,PNG,GIF以外になっています")
+    end
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     %w[memo recorded_at spot_name]
