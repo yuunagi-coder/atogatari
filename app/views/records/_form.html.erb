@@ -30,7 +30,7 @@
     </div> 
     <div class="mb-4">
       <%= form.label :photo, class: "block" %>
-      <%= form.file_field :photo %>
+      <%= form.file_field :photo, accept: "image/*" %>
     </div>
     <div class="mb-4">
       <%= form.label :memo, class: "block" %>
