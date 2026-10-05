@@ -13,7 +13,7 @@ class Record < ApplicationRecord
 
   def photo_content_type
     if photo.attached? && !photo.content_type.in?(%w[image/jpeg image/png image/gif])
-      errors.add(:photo, 'ファイル形式がJPEG,PNG,GIF以外になっています')
+      errors.add(:photo, "ファイル形式がJPEG,PNG,GIF以外になっています")
     end
   end
 
